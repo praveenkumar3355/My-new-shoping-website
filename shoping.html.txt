@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofos Skepsi - Premium Fashion for Men</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6b4c8a;
+            --secondary-color: #2dd4bf;
+            --accent-color: #f59e0b;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-style: italic;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #4a3567 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--dark);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(45, 212, 191, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            background: var(--light);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Product Categories */
+        .categories {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        .categories h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            position: relative;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            color: var(--white);
+            z-index: 2;
+        }
+
+        .category-info h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-info p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 4rem 2rem;
+            background: var(--light);
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            background: var(--light);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .product-category {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .price-current {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .price-original {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #4a3567;
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #4b5563;
+        }
+
+        .about-highlight {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary-color);
+            color: var(--dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .category-grid,
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Sofos <span>Skepsi</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-icon">☰</div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Scale your brand <span style="color: var(--accent-color);">online</span></h1>
+        <p class="tagline">Premium Fashion for the Modern Man</p>
+        <p>Build more than a wardrobe, build a statement. Discover our curated collection of fashion-forward dresses and shoes designed for men who value style, quality, and sophistication.</p>
+        <a href="#shop" class="cta-button">Start Shopping - It's Free</a>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <h2>Dream it? Build it!</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Set Your Style</h3>
+                <p>Curated collections tailored to your fashion sense and lifestyle needs</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <h3>Premium Quality</h3>
+                <p>Only the finest materials and craftsmanship for discerning customers</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Fast Delivery</h3>
+                <p>Free shipping on all orders with express delivery options available</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Trendy Designs</h3>
+                <p>Stay ahead with our constantly updated fashion-forward collections</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories" class="categories">
+        <h2>All the features done right</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect fill='%236b4c8a' width='400' height='500'/%3E%3Ctext x='50%25' y='50%25' font-size='60' fill='white' text-anchor='middle' dominant-baseline='middle' font-family='Arial'%3E👔 DRESSES%3C/text%3E%3C/svg%3E" alt="Men's Dresses">
+                <div class="category-info">
+                    <h3>Fashion Dresses</h3>
+                    <p>Contemporary styles for every occasion</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect fill='%232dd4bf' width='400' height='500'/%3E%3Ctext x='50%25' y='50%25' font-size='60' fill='%231f2937' text-anchor='middle' dominant-baseline='middle' font-family='Arial'%3E👞 SHOES%3C/text%3E%3C/svg%3E" alt="Men's Shoes">
+                <div class="category-info">
+                    <h3>Premium Shoes</h3>
+                    <p>Step up your footwear game</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="shop" class="products">
+        <h2>One need, one app - Featured Products</h2>
+        <div class="product-grid">
+            <!-- Dress Products -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 350'%3E%3Crect fill='%23f3f4f6' width='300' height='350'/%3E%3Ctext x='50%25' y='45%25' font-size='80' text-anchor='middle' dominant-baseline='middle'%3E👔%3C/text%3E%3Ctext x='50%25' y='65%25' font-size='16' fill='%236b4c8a' text-anchor='middle' dominant-baseline='middle' font-family='Arial'%3EClassic Suit%3C/text%3E%3C/svg%3E" alt="Classic Business Suit">
+                    <span class="product-badge">NEW</span>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Business Wear</p>
+                    <h3>Classic Business Suit</h3>
+                    <div class="product-price">
+                        <span class="price-current">$299</span>
+                        <span class="price-original">$399</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 350'%3E%3Crect fill='%23f3f4f6' width='300' height='350'/%3E%3Ctext x='50%25' y='45%25' font-size='80' text-anchor='middle' dominant-baseline='middle'%3E👕%3C/text%3E%3Ctext x='50%25' y='65%25' font-size='16' fill='%236b4c8a' text-anchor='middle' dominant-baseline='middle' font-family='Arial'%3ECasual Shirt%3C/text%3E%3C/svg%3E" alt="Premium Casual Shirt">
+                    <span class="product-badge">SALE</span>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Casual Wear</p>
+                    <h3>Premium Casual Shirt</h3>
+                    <div class="product-price">
+                        <span class="price-current">$79</span>
+                        <span class="price-original">$120</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Shoe Products -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 350'%3E%3Crect fill='%23f3f4f6' width='300' height='350'/%3E%3Ctext x='50%25' y='45%25' font-size='80' text-anchor='middle' dominant-baseline='middle'%3E👞%3C/text%3E%3Ctext x='50%25' y='65%25' font-size='16' fill='%236b4c8a' text-anchor='middle' dominant-baseline='middle' font-family='Arial'%3EOxford Shoes%3C/text%3E%3C/svg%3E" alt="Leather Oxford Shoes">
+                    <span class="product-badge">BEST</span>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Formal Shoes</p>
+                    <h3>Leather Oxford Shoes</h3>
+                    <div class="product-price">
+                        <span class="price-current">$189</span>
+                        <span class="price-original">$250</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 350'%3E%3Crect fill='%23f3f4f6' width='300' height='350'/%3E%3Ctext x='50%25' y='45%25' font-size='80' text-anchor='middle' dominant-baseline='middle'%3E👟%3C/text%3E%3Ctext x='50%25' y='65%25' font-size='16' fill='%236b4c8a' text-anchor='middle' dominant-baseline='middle' font-family='Arial'%3ESport Sneakers%3C/text%3E%3C/svg%3E" alt="Designer Sneakers">
+                    <span class="product-badge">NEW</span>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Casual Shoes</p>
+                    <h3>Designer Sneakers</h3>
+                    <div class="product-price">
+                        <span class="price-current">$159</span>
+                        <span class="price-original">$200</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 350'%3E%3Crect fill='%23f3f4f6' width='300' height='350'/%3E%3Ctext x='50%25' y='45%25' font-size='80' text-anchor='middle' dominant-baseline='middle'%3E🥾%3C/text%3E%3Ctext x='50%25' y='65%25' font-size='16' fill='%236b4c8a' text-anchor='middle' dominant-baseline='middle' font-family='Arial'%3EChelsea Boots%3C/text%3E%3C/svg%3E" alt="Chelsea Boots">
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Boots</p>
+                    <h3>Chelsea Boots</h3>
+                    <div class="product-price">
+                        <span class="price-current">$219</span>
+                        <span class="price-original">$280</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 350'%3E%3Crect fill='%23f3f4f6' width='300' height='350'/%3E%3Ctext x='50%25' y='45%25' font-size='80' text-anchor='middle' dominant-baseline='middle'%3E🧥%3C/text%3E%3Ctext x='50%25' y='65%25' font-size='16' fill='%236b4c8a' text-anchor='middle' dominant-baseline='middle' font-family='Arial'%3ELeather Jacket%3C/text%3E%3C/svg%3E" alt="Leather Jacket">
+                    <span class="product-badge">HOT</span>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Outerwear</p>
+                    <h3>Premium Leather Jacket</h3>
+                    <div class="product-price">
+                        <span class="price-current">$399</span>
+                        <span class="price-original">$550</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2>Scalable and fully integrated</h2>
+            <p>At <strong>Sofos Skepsi</strong>, we believe that fashion is more than just clothing—it's a form of self-expression, confidence, and art. Our mission is to provide modern men with premium fashion pieces that combine timeless elegance with contemporary trends.</p>
+            <p>We carefully curate our collections to ensure that every dress and every pair of shoes meets our high standards of quality, style, and comfort. Whether you're dressing for a business meeting, a casual outing, or a special occasion, Sofos Skepsi has you covered.</p>
+            <div class="about-highlight">
+                "It's free. For real. Your online store is free forever with unlimited support and maintenance. No ads or limits."
+            </div>
+            <p style="margin-top: 2rem;">Join thousands of satisfied customers who trust Sofos Skepsi to elevate their wardrobe and make a lasting impression wherever they go.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sofos Skepsi</h3>
+                <p>Premium fashion for the modern man. Elevate your style, express your confidence.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="Twitter">🐦</a>
+                    <a href="#" title="LinkedIn">in</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#shop">All Products</a></li>
+                    <li><a href="#categories">Dresses</a></li>
+                    <li><a href="#categories">Shoes</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sofos Skepsi. All rights reserved. | Website made with passion for fashion</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('h3').textContent;
+                
+                // Visual feedback
+                this.textContent = 'Added! ✓';
+                this.style.background = '#2dd4bf';
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = '#6b4c8a';
+                }, 2000);
+                
+                // You could add actual cart functionality here
+                console.log(`Added ${productName} to cart`);
+            });
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.menu-icon').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
